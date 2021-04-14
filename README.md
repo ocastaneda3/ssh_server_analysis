@@ -155,9 +155,7 @@ Finally I wanted to be able to display this data is a more visual way so I heade
 ## Acknowledgements
 
 * [Black Hills Information Security](https://www.youtube.com/channel/UCJ2U9Dq9NckqHMbcUupgF0A)
-* [hostinetl](https://github.com/keithjjones/hostintel)
-* [Datawrapper](https://app.datawrapper.de)
-
+* [Keith J. Jones](https://github.com/keithjjones/hostintel)
 
 [contributors-shield]: https://img.shields.io/github/contributors/ocastaneda3/multilayer-perceptron.svg?style=for-the-badge
 [contributors-url]: https://github.com/ocastaneda3/multilayer-perceptron/graphs/contributors
