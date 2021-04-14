@@ -150,7 +150,7 @@ Finally after running `hostintel` I now have a CSV file with various information
 ╚══════════════════════════════════╧═════╝	╚══════════════════════════════════╧═════╝
 ```
 
-Finally I wanted to be able to display this data is a more visual way so I headed over to Datawrapper, an open source used to create charts, and created a heatmap to show where the most unique IP address I found where comming from.
+Finally I wanted to be able to display this data is a more visual way so I headed over to [Datawrapper](https://app.datawrapper.de), an open source used to create charts, and created a heatmap to show where the most unique IP address I found where comming from.
 
 ![HeatMap](images/failed-ssh-login-attempts-heat-map.png)
 
