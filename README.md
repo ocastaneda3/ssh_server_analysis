@@ -13,22 +13,19 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
-While preparing for some upcoming interviews, I wanted to challenge myself to learn some new tools and hope to create/develop something for me to show off.
-I have a personal Linux Server running Ubuntu that I used all throughout college when working on assignments, projects, and personal projects.
-I knew very little about security when I first set the server up, but I was able to search around and find a way to secure it.
-I ended setting up a SSH Key Pair to make sure I was the only one allowed in. To strength that I disabled any other types of login other than logging in via my SSH Key. 
+While preparing for some upcoming interviews, I wanted to challenge myself to learn some new tools and hope to create/develop something for me to show off. I have a personal Linux Server running Ubuntu that I used all throughout college when working on assignments, projects, and personal projects. I knew very little about security when I first set the server up, but I was able to search around and find a way to secure it. I ended setting up a SSH Key Pair to make sure I was the only one allowed in. To strength that I disabled any other types of login other than logging in via my SSH Key. 
 
-I decided then to try auditing the system logs of my server. I reverted back to the normal ssh login method of username and password to in order to better filter out failed ssh login attepts that matched `Failed password`. I also came across this tool called `hostintel` that would collect various intelligence sources for hosts which would allow me to see from where these attempts were comming from.
+I decided then to try auditing the system logs of my server. I reverted to the normal ssh login method of username and password to in order to better filter out failed ssh login attempts that matched Failed password. I also came across this tool called `hostintel` that would collect various intelligence sources for hosts which would allow me to see from where these attempts were coming from.
 
-First I looked around for what it was that I needed in order to make this work. I learned some neat linux commands that allowewd me to pull the necessary data from some folks over at [Black Hills Information Security](https://www.youtube.com/channel/UCJ2U9Dq9NckqHMbcUupgF0A). Their [Linux Command Line Dojo](https://youtube.com/playlist?list=PLTUOBi7lRRg_Ri3dBfWCAFP4cQXQnDt6G) series helped a tremendous amount when it came to being able to audit the nessecary data for this to have come out the way it did.
+First, I looked around for what it was that I needed in order to make this work. I learned some neat Linux commands that allowed me to pull the necessary data from some folks over at [Black Hills Information Security](https://www.youtube.com/channel/UCJ2U9Dq9NckqHMbcUupgF0A). Their Linux Command Line Dojo](https://youtube.com/playlist?list=PLTUOBi7lRRg_Ri3dBfWCAFP4cQXQnDt6G) series helped a tremendous amount when it came to being able to audit the necessary data for this to have come out the way it did.
 
-Like I mentioned above, as I was looking for tools to play with I came across this called `hostintel` that uses a variety of different intligence sources in order to pull a slew of information about a specific host. I had some issues getting it run initially but after troublshooting some errors and submitting some issue tickets I was able to get it to output some useful information.
+Like I mentioned above, as I was looking for tools to play with I came across this called `hostintel` that uses a variety of different intelligence sources in order to pull a slew of information about a specific host. I had some issues getting it run initially but after troubleshooting some errors and submitting some issue tickets I was able to get it to output some useful information.
 
 This is what I was able to come up with.
 
 <!-- GETTING STARTED -->
 ## Getting Started
-I needed to have administrative(root) level permisions in order to be able to view the system logs in `/var/log/auth.log`.
+I needed to have administrative(root) level permissions in order to be able to view the system logs in `/var/log/auth.log`.
 
 <!-- TOOLS -->
 ### Tools
@@ -58,12 +55,12 @@ I needed to have administrative(root) level permisions in order to be able to vi
   ```
   
 #### Step 3: Get `hostintel` tool 
-##### (*This requires creating a config file so visit the [`hostintel`](https://github.com/keithjjones/hostintel) github page for setup instructions*)
+##### (*This requires creating a config file so visit the [`hostintel`](https://github.com/keithjjones/hostintel) GitHub page for setup instructions*)
   ```sh
   # git clone https://github.com/keithjjones/hostintel.git
   ```
 
-#### Step 4: Process `/var/log/auth.log` data with `awk` then sort IP address by all 4 numeric feilds and store unique addresses. 
+#### Step 4: Process `/var/log/auth.log` data with `awk` then sort IP address by all 4 numeric fields and store unique addresses. 
   ```sh  
   # awk '/Failed password/ {print $(NF-3)}' /var/log/auth.log >failed_ssh_attempts
   # sort -n -t: -k1,1 -k2,2 -k3,3 -k4,4 failed_ssh_attempts | uniq >sorted_failed_ssh_attempts
@@ -76,7 +73,7 @@ I needed to have administrative(root) level permisions in order to be able to vi
   ```
 
 ### Results
-Finally after running `hostintel` I now have a CSV file with various information about each IP address I was able to pull. I was now able to see from where around the world my server was being attempted to be accessed. I went ahead in excel and found all the unique countires from which the attempts were comming from and got a count of the total number of unique attempts.
+Finally, after running `hostintel` I now have a CSV file with various information about each IP address I was able to pull. I was now able to see from where around the world my server was being attempted to be accessed. I went ahead in excel and found all the unique countries from which the attempts were coming from and got a count of the total number of unique attempts.
 
 ```
 ╔══════════════════════════════════╤═════╗	╔══════════════════════════════════╤═════╗
@@ -150,7 +147,7 @@ Finally after running `hostintel` I now have a CSV file with various information
 ╚══════════════════════════════════╧═════╝	╚══════════════════════════════════╧═════╝
 ```
 
-Finally I wanted to be able to display this data is a more visual way so I headed over to [Datawrapper](https://app.datawrapper.de), an open source used to create charts, and created a heatmap to show where the most unique IP address I found where comming from.
+Finally I wanted to be able to display this data is a more visual way so I headed over to [Datawrapper](https://app.datawrapper.de), an open source used to create charts, and created a heatmap to show where the most unique IP address I found where coming from.
 
 ![HeatMap](images/failed-ssh-login-attempts-heat-map.png)
 
